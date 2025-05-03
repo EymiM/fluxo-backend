@@ -26,3 +26,12 @@ class Tarefa(BaseModel):
     dependencias: Optional[List[str]] = []
     checklist: Optional[List[ChecklistItem]] = []
     em_alarme: Optional[bool] = False
+
+class Filtro(BaseModel):
+    ls_nome: Optional[List[str]] = []
+    ls_status: Optional[List[StatusTarefa]] = []
+    ls_prioridade: Optional[List[PrioridadeTarefa]] = []
+    ls_responsavel: Optional[List[str]] = []
+    ls_tags: Optional[List[str]] = []
+    ls_dependendecias: Optional[List[str]] = []
+    em_alarme: Optional[bool] = None

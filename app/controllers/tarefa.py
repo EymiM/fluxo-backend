@@ -1,14 +1,14 @@
 from fastapi import APIRouter, Depends
-from app.schemas.tarefa import Tarefa, MoverTarefa
+from app.schemas.tarefa import Filtro, Tarefa, MoverTarefa
 from app.services.tarefa import listar_tarefas, adicionar_tarefa, mover_tarefa
 from app.controllers.auth import get_current_user
 from app.controllers.websocket import active_connections
 
 router = APIRouter()
 
-@router.get("/tarefas/ver-tarefas")
-def get_tarefas(user=Depends(get_current_user)):
-    return listar_tarefas()
+@router.post("/tarefas/ver-tarefas")
+def get_tarefas(filtro: Filtro, user=Depends(get_current_user)):
+    return listar_tarefas(filtro)
 
 @router.post("/tarefas/create-tarefas")
 async def post_tarefa(tarefa: Tarefa, user=Depends(get_current_user)):
