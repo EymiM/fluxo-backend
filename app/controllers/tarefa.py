@@ -1,0 +1,18 @@
+from fastapi import APIRouter, Depends
+from app.models.tarefa import Tarefa, MoverTarefa
+from app.services.tarefa import listar_tarefas, adicionar_tarefa, mover_tarefa
+from app.controllers.auth import get_current_user
+
+router = APIRouter()
+
+@router.get("/tarefas/ver-tarefas")
+def get_tarefas(user=Depends(get_current_user)):
+    return listar_tarefas()
+
+@router.post("/tarefas/create-tarefas")
+def post_tarefa(tarefa: Tarefa, user=Depends(get_current_user)):
+    return adicionar_tarefa(tarefa.nome)
+
+@router.put("/tarefas/move-tarefas")
+def put_tarefa(dados: MoverTarefa, user=Depends(get_current_user)):
+    return mover_tarefa(dados.nome, dados.nova_coluna)
