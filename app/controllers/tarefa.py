@@ -12,14 +12,15 @@ def get_tarefas(user=Depends(get_current_user)):
 
 @router.post("/tarefas/create-tarefas")
 async def post_tarefa(tarefa: Tarefa, user=Depends(get_current_user)):
-    results = adicionar_tarefa(tarefa.nome)
+    results = adicionar_tarefa(tarefa)
     await enviar_alerta(f"Tarefa '{tarefa.nome}' foi criada!")
 
     return results
 
 @router.put("/tarefas/move-tarefas")
-def put_tarefa(dados: MoverTarefa, user=Depends(get_current_user)):
-    return mover_tarefa(dados.nome, dados.nova_coluna)
+async def put_tarefa(mover: MoverTarefa, user=Depends(get_current_user)):
+    tarefa = mover_tarefa(mover=mover)
+    await enviar_alerta(f"Tarefa '{tarefa.nome}' foi modificada para '{mover.novo_status}'!")
 
 async def enviar_alerta(mensagem: str):
     for connection in active_connections:

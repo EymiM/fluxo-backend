@@ -1,6 +1,4 @@
+from app.models.tarefa import Tarefa
+
 # Simula banco de dados
-fluxo = {
-    "To Do": [],
-    "Doing": [],
-    "Done": []
-}
+fluxo: list[Tarefa] = []
