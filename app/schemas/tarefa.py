@@ -27,6 +27,20 @@ class Tarefa(BaseModel):
     checklist: Optional[List[ChecklistItem]] = []
     em_alarme: Optional[bool] = False
 
+class PatchTarefa(BaseModel):
+    nome: Optional[str] = None
+    descricao: Optional[str] = None
+    status: Optional[StatusTarefa] = None
+    prioridade: Optional[PrioridadeTarefa] = None
+    responsavel: Optional[str] = None
+    data_criacao: Optional[datetime] = None
+    data_vencimento: Optional[datetime] = None
+    tempo_realizado: Optional[int] = None
+    tags: Optional[List[str]] = None
+    dependencias: Optional[List[str]] = None
+    checklist: Optional[List[ChecklistItem]] = None
+    em_alarme: Optional[bool] = None
+
 class Filtro(BaseModel):
     ls_nome: Optional[List[str]] = []
     ls_status: Optional[List[StatusTarefa]] = []

@@ -1,7 +1,7 @@
 from datetime import datetime
 from fastapi import HTTPException
 from app.storage import fluxo
-from app.schemas.tarefa import Filtro, Tarefa, MoverTarefa
+from app.schemas.tarefa import Filtro, PatchTarefa, Tarefa, MoverTarefa
 
 def listar_tarefas(filtro: Filtro):
     fluxo_f = fluxo
@@ -49,6 +49,16 @@ def mover_tarefa(mover: MoverTarefa):
     for t in fluxo:
         if t.nome == mover.nome:
             t.status = mover.novo_status
+            return t
+        
+    raise HTTPException(status_code=404, detail="Tarefa não encontrada")
+
+def editar_tarefa(tarefa: str, patch: PatchTarefa):
+    for t in fluxo:
+        if t.nome == tarefa:
+            update_data = patch.dict(exclude_unset=True)
+            for key, value in update_data.items():
+                setattr(t, key, value)
             return t
         
     raise HTTPException(status_code=404, detail="Tarefa não encontrada")
