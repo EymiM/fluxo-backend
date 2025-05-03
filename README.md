@@ -21,9 +21,9 @@ Os endpoints de criação e modificação de tarefas emitem um alerta aos client
 
 ## Exemplos de Operações com a API
 1. **Listar todas as tarefas**
-    - Método: `GET`
+    - Método: `POST`
     - Endpoint: `/tarefas/ver-tarefas`
-    - Descrição: Retorna uma lista com todos as tarefas cadastradas.
+    - Descrição: Retorna uma lista com as tarefas cadastradas, conforme filtro desejado.
 
 2. **Criar nova tarefa**
     - Método: `POST`
@@ -34,3 +34,9 @@ Os endpoints de criação e modificação de tarefas emitem um alerta aos client
     - Método: `PUT`
     - Endpoint: `/tarefas/move-tarefas`
     - Descrição: Recebe o nome da tarefa e a atualiza conforme novo status dado.
+
+
+4. **Editar tarefa**
+    - Método: `PUT`
+    - Endpoint: `/tarefas/edita-tarefas`
+    - Descrição: Recebe o nome da tarefa e os dados que o cliente deseja editar.
