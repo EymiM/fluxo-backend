@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from app.models.tarefa import Tarefa, MoverTarefa
+from app.schemas.tarefa import Tarefa, MoverTarefa
 from app.services.tarefa import listar_tarefas, adicionar_tarefa, mover_tarefa
 from app.controllers.auth import get_current_user
 from app.controllers.websocket import active_connections

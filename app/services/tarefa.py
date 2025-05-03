@@ -1,7 +1,7 @@
 from datetime import datetime
 from fastapi import HTTPException
 from app.storage import fluxo
-from app.models.tarefa import Tarefa, MoverTarefa
+from app.schemas.tarefa import Tarefa, MoverTarefa
 
 def listar_tarefas():
     return fluxo
