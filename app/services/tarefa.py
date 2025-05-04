@@ -47,7 +47,7 @@ def adicionar_tarefa(tarefa: Tarefa):
 
 def mover_tarefa(mover: MoverTarefa):
     for t in fluxo:
-        if t.nome == mover.nome:
+        if t.nome == mover.tarefa:
             t.status = mover.novo_status
             return t
         

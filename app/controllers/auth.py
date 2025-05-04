@@ -45,6 +45,7 @@ def create_token(data: dict, expires: timedelta = timedelta(minutes=ACCESS_TOKEN
 
 @router.post("/token")
 def login(form: OAuth2PasswordRequestForm = Depends()):
+    print(f"login")
     user = get_user(form.username)
     if not user or not verify_password(form.password, user["hashed_password"]):
         raise HTTPException(status_code=401, detail="Usuário ou senha inválidos")

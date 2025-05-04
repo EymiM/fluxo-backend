@@ -6,8 +6,8 @@ from app.enums.prioridade import PrioridadeTarefa
 from app.enums.status import StatusTarefa
 
 class MoverTarefa(BaseModel):
-    nome: str
-    novo_status: str
+    tarefa: str
+    novo_status: StatusTarefa
 
 class ChecklistItem(BaseModel):
     topico: str
