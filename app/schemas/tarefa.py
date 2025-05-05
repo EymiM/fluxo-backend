@@ -13,8 +13,10 @@ class ChecklistItem(BaseModel):
     topico: str
     feito: bool = False
 
-class Tarefa(BaseModel):
+class TarefaPK(BaseModel):
     id: int
+
+class TarefaBase(BaseModel):
     nome: str
     descricao: Optional[str]
     status: StatusTarefa
@@ -27,6 +29,12 @@ class Tarefa(BaseModel):
     dependencias: Optional[List[str]] = []
     checklist: Optional[List[ChecklistItem]] = []
     em_alarme: Optional[bool] = False
+
+class Tarefa(TarefaBase, TarefaPK):
+    pass
+
+class PostTarefa(TarefaBase):
+    pass
 
 class PatchTarefa(BaseModel):
     nome: Optional[str] = None
