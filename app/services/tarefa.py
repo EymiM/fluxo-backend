@@ -1,7 +1,9 @@
 from datetime import datetime
 from fastapi import HTTPException
 from app.storage import fluxo
-from app.schemas.tarefa import Filtro, PatchTarefa, Tarefa, MoverTarefa
+from app.schemas.tarefa import Filtro, PatchTarefa, Tarefa, MoverTarefa, PostTarefa
+
+variavel_id = 0
 
 def listar_tarefas(filtro: Filtro):
     fluxo_f = fluxo
@@ -36,14 +38,17 @@ def obter_tarefa(nome: str):
         
     raise HTTPException(status_code=404, detail="Tarefa não encontrada")
 
-def adicionar_tarefa(tarefa: Tarefa):
+def adicionar_tarefa(tarefa: PostTarefa):
+    global variavel_id
     for t in fluxo:
         if t.nome == tarefa.nome:
             raise HTTPException(status_code=400, detail="Uma tarefa com esse nome já existe.")
     tarefa.data_criacao = tarefa.data_criacao or datetime.now()
-    fluxo.append(tarefa)
+    variavel_id+=1
+    nova_tarefa = Tarefa(**tarefa.dict(), id=variavel_id)
+    fluxo.append(nova_tarefa)
 
-    return {"mensagem": "Tarefa adicionada com sucesso"}
+    return nova_tarefa
 
 def mover_tarefa(mover: MoverTarefa):
     for t in fluxo:

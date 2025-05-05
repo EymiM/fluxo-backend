@@ -20,7 +20,7 @@ class TarefaBase(BaseModel):
     nome: str
     descricao: Optional[str]
     status: StatusTarefa
-    prioridade: Optional[PrioridadeTarefa]
+    prioridade: PrioridadeTarefa
     responsavel: Optional[str]
     data_criacao: Optional[datetime] = datetime.now()
     data_vencimento: Optional[datetime]

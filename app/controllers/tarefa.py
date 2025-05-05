@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from app.schemas.tarefa import Filtro, PatchTarefa, Tarefa, MoverTarefa
+from app.schemas.tarefa import Filtro, PatchTarefa, Tarefa, MoverTarefa, PostTarefa
 from app.services.tarefa import listar_tarefas, adicionar_tarefa, mover_tarefa, editar_tarefa
 from app.controllers.auth import get_current_user
 from app.controllers.websocket import active_connections
@@ -11,7 +11,7 @@ def get_tarefas(filtro: Filtro, user=Depends(get_current_user)):
     return listar_tarefas(filtro)
 
 @router.post("/tarefas/create-tarefas")
-async def post_tarefa(tarefa: Tarefa, user=Depends(get_current_user)):
+async def post_tarefa(tarefa: PostTarefa, user=Depends(get_current_user)):
     results = adicionar_tarefa(tarefa)
     await enviar_alerta(f"Tarefa '{tarefa.nome}' foi criada!")
 
