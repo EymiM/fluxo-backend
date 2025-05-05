@@ -14,6 +14,7 @@ class ChecklistItem(BaseModel):
     feito: bool = False
 
 class Tarefa(BaseModel):
+    id: int
     nome: str
     descricao: Optional[str]
     status: StatusTarefa
