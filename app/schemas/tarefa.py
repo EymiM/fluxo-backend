@@ -18,13 +18,13 @@ class TarefaPK(BaseModel):
 
 class TarefaBase(BaseModel):
     nome: str
-    descricao: Optional[str]
+    descricao: Optional[str] = None
     status: StatusTarefa
     prioridade: PrioridadeTarefa
-    responsavel: Optional[str]
+    responsavel: Optional[str] = None
     data_criacao: Optional[datetime] = datetime.now()
-    data_vencimento: Optional[datetime]
-    tempo_realizado: Optional[int]
+    data_vencimento: Optional[datetime] = None
+    tempo_realizado: Optional[int] = None
     tags: Optional[List[str]] = []
     dependencias: Optional[List[str]] = []
     checklist: Optional[List[ChecklistItem]] = []
@@ -42,13 +42,10 @@ class PatchTarefa(BaseModel):
     status: Optional[StatusTarefa] = None
     prioridade: Optional[PrioridadeTarefa] = None
     responsavel: Optional[str] = None
-    data_criacao: Optional[datetime] = None
     data_vencimento: Optional[datetime] = None
-    tempo_realizado: Optional[int] = None
     tags: Optional[List[str]] = None
     dependencias: Optional[List[str]] = None
     checklist: Optional[List[ChecklistItem]] = None
-    em_alarme: Optional[bool] = None
 
 class Filtro(BaseModel):
     ls_nome: Optional[List[str]] = []
